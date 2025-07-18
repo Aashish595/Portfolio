@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
+import assets from "../assets/assets";
 
 export default function HeroSection() {
   const heroRef = useRef(null);
@@ -46,7 +47,7 @@ export default function HeroSection() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white">
               Hi, I'm{" "}
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Aashish Maurya
+                Gurudas Maurya
               </span>
             </h1>
             <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300">
@@ -90,7 +91,7 @@ export default function HeroSection() {
               <div className="w-80 h-80 rounded-full bg-gradient-to-br from-blue-400 to-purple-600 p-1 shadow-2xl">
                 <div className="w-full h-full rounded-full bg-white dark:bg-gray-800 p-2">
                   <img
-                    src="/main-photo.jpeg"
+                    src={assets.mainPhoto}
                     alt="aashish maurya"
                     width={300}
                     height={300}
