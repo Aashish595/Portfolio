@@ -10,7 +10,7 @@ export default function Footer() {
           </div>
 
           <div className="text-center md:text-right">
-            <p className="text-gray-400">© {new Date().getFullYear()} Gurudas Maurya. All rights reserved.</p>
+            <p className="text-gray-400">© {new Date().getFullYear()} Aashish Maurya. All rights reserved.</p>
             <p className="text-sm text-gray-500 mt-1">Built with Next.js & Tailwind CSS</p>
           </div>
         </div>

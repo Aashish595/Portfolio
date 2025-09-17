@@ -1,4 +1,5 @@
 import { Download, Eye, FileText } from "lucide-react";
+import resume from "../assets/Gurudas_Maurya_MERN_Developer_Resume.pdf";
 
 export default function ResumeSection() {
   return (
@@ -31,13 +32,13 @@ export default function ResumeSection() {
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Experience</h4>
                   <div>
-                    <p className="font-medium">MERN Stack Developer @ Glitch Studio (May–Jul 2025)</p>
-                    <p className="text-gray-500 dark:text-gray-400">Led development of scalable web apps...</p>
+                    <p className="font-medium">MERN Stack Developer @ BlueStock Fintech (Aug-Sep 2025)</p>
+                    <p className="text-gray-500 dark:text-gray-400">Frontend development of scalable web apps...</p>
                   </div>
-                  <div>
+                  {/* <div>
                     <p className="font-medium">Internship @ Glitch Studio (May–Jul 2025)</p>
                     <p className="text-gray-500 dark:text-gray-400">Maintained multiple client projects...</p>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div>
@@ -64,20 +65,20 @@ export default function ResumeSection() {
               </div>
               <div className="p-6 space-y-4">
                 <a
-                  href="/resume.pdf"
+                  href={resume}
                   download
                   className="w-full flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-md shadow hover:scale-105 transition"
                 >
                   <Download className="mr-2 h-5 w-5" /> Download PDF
                 </a>
                 <a
-                  href="https://drive.google.com/view_resume_link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center border dark:border-gray-600 text-gray-800 dark:text-gray-200 px-6 py-3 rounded-md shadow hover:bg-gray-100 dark:hover:bg-gray-800 transition hover:scale-105"
-                >
-                  <Eye className="mr-2 h-5 w-5" /> View Online
-                </a>
+                 href="https://drive.google.com/file/d/10C-bzw-TCZNxYcYoBzlBiycIZ1ixcZaj/preview"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="w-full flex items-center justify-center border dark:border-gray-600 text-gray-800 dark:text-gray-200 px-6 py-3 rounded-md shadow hover:bg-gray-100 dark:hover:bg-gray-800 transition hover:scale-105"
+                 >
+                <Eye className="mr-2 h-5 w-5" /> View Online
+              </a>
               </div>
             </div>
 
@@ -88,7 +89,7 @@ export default function ResumeSection() {
               </div>
               <div className="p-6 grid grid-cols-2 gap-4 text-center">
                 {[
-                  { label: "Years Experience", value: "0+" },
+                  { label: "Years Experience", value: "1+" },
                   { label: "Projects Completed", value: "15+" },
                   { label: "Technologies", value: "15+" },
                   { label: "Client Satisfaction", value: "100%" },

@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram } from "lucide-react";
+import emailjs from 'emailjs-com';
+
+
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -9,16 +12,20 @@ export default function ContactSection() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  const handleSubmit = (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    alert("Message sent successfully!");
-    setFormData({ name: "", email: "", message: "" });
-    setIsSubmitting(false);
-  };
+  emailjs.send('service_d1pzvb9', 'template_unqjo9n', formData, 'IL41myymDqjaHDviK')
+    .then(() => {
+      alert('Message sent successfully!');
+      setFormData({ name: '', email: '', message: '' });
+    })
+    .catch(() => {
+      alert('Failed to send message.');
+    })
+    .finally(() => setIsSubmitting(false));
+};
 
   const handleChange = (e) => {
     setFormData((prev) => ({

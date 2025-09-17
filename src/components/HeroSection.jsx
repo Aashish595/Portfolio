@@ -47,7 +47,7 @@ export default function HeroSection() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white">
               Hi, I'm{" "}
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Gurudas Maurya
+                Aashish Maurya
               </span>
             </h1>
             <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300">
@@ -65,10 +65,16 @@ export default function HeroSection() {
               >
                 View My Work <ArrowDown className="inline ml-2 h-4 w-4" />
               </button>
-              <button className="px-6 py-3 border-2 text-gray-900 dark:text-white rounded-md shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 hover:scale-105 transition">
+              <a
+                href="https://drive.google.com/file/d/10C-bzw-TCZNxYcYoBzlBiycIZ1ixcZaj/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-6 py-3 border-2 text-gray-900 dark:text-white rounded-md shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 hover:scale-105 transition"
+              >
                 <Download className="inline mr-2 h-4 w-4" />
                 Download Resume
-              </button>
+              </a>
+  
             </div>
 
             {/* Social Icons */}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Moon, Sun, Menu, X } from "lucide-react";
-import { useTheme } from "./ThemeProvider"; // Import global theme context
+import { useTheme } from "./ThemeProvider"; 
 
 
 const navItems = [
