@@ -1,5 +1,16 @@
+"use client";
+
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Github,
+  Linkedin,
+  Instagram,
+} from "lucide-react";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -13,7 +24,7 @@ export default function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((r) => setTimeout(r, 2000));
 
     alert("Message sent successfully!");
     setFormData({ name: "", email: "", message: "" });
@@ -28,139 +39,228 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white dark:bg-gray-800 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Get In Touch
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Ready to start your next project? Let's discuss how I can help bring your ideas to life.
+    <section
+      id="contact"
+      className="py-22 bg-slate-950 relative overflow-hidden"
+    >
+      {/* background glow */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-500/10 via-transparent to-transparent" />
+
+      <div className="max-w-7xl mx-auto px-4 relative z-10">
+
+        {/* ===== HEADER ===== */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl font-bold text-white">Get In Touch</h2>
+          <p className="text-gray-400 mt-3 max-w-2xl mx-auto">
+            Ready to start a project or looking for a developer?
+            Let's build something impactful.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div className="rounded-xl bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-0 shadow-lg p-6">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Send Me a Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Your full name"
-                />
-              </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="your.email@example.com"
-                />
-              </div>
+          {/* ===== CONTACT FORM ===== */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="bg-white/5 border border-white/10 backdrop-blur
+                       rounded-xl p-8 shadow-lg shadow-blue-500/5"
+          >
+            <h3 className="text-2xl font-semibold text-white mb-6">
+              Send a Message
+            </h3>
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={5}
-                  className="w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Tell me about your project..."
-                ></textarea>
-              </div>
+            <form onSubmit={handleSubmit} className="space-y-8">
+
+              {/* NAME */}
+              <FloatingInput
+                label="Name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+
+              {/* EMAIL */}
+              <FloatingInput
+                label="Email"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+
+              {/* MESSAGE */}
+              <FloatingTextarea
+                label="Message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+              />
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-4 py-2 rounded-md bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                className="w-full flex items-center justify-center gap-2
+                           bg-gradient-to-r from-blue-500 to-cyan-500
+                           hover:from-blue-600 hover:to-cyan-600
+                           text-white font-medium py-3 rounded-lg
+                           shadow-lg shadow-blue-500/30
+                           transition-transform hover:scale-[1.02]"
               >
                 {isSubmitting ? (
-                  <div className="flex items-center justify-center">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                  <>
+                    <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                     Sending...
-                  </div>
+                  </>
                 ) : (
-                  <div className="flex items-center justify-center">
-                    <Send className="mr-2 h-4 w-4" />
+                  <>
+                    <Send size={16} />
                     Send Message
-                  </div>
+                  </>
                 )}
               </button>
             </form>
-          </div>
+          </motion.div>
 
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div className="rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-0 shadow-lg p-6">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Contact Information</h3>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Mail className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                  <span className="text-gray-700 dark:text-gray-300">aashishmaurya959@gmail.com</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Phone className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                  <span className="text-gray-700 dark:text-gray-300">+91 9919454692</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                  <span className="text-gray-700 dark:text-gray-300">Tulsipur, Balrampur (Uttar Pradesh) - 271208</span>
-                </div>
+          {/* ===== INFO ===== */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-6"
+          >
+            {/* CONTACT INFO */}
+            <div className="bg-white/5 border border-white/10 backdrop-blur rounded-xl p-6">
+              <h4 className="text-lg font-semibold text-white mb-4">
+                Contact Information
+              </h4>
+
+              <div className="space-y-4 text-gray-300 text-sm">
+                <InfoRow icon={<Mail size={18} />} text="aashishmaurya959@gmail.com" />
+                <InfoRow icon={<Phone size={18} />} text="+91 9919454692" />
+                <InfoRow icon={<MapPin size={18} />} text="Uttar Pradesh, India" />
               </div>
             </div>
 
-            {/* Social Links */}
-            <div className="rounded-xl bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border-0 shadow-lg p-6">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Connect With Me</h3>
-              <div className="flex space-x-4">
-                <a href="https://github.com/Aashish595" target="_blank" rel="noopener noreferrer" className="p-2 rounded-md border hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-200 transform hover:scale-110">
-                  <Github className="h-5 w-5" />
-                </a>
-                <a href="https://www.linkedin.com/in/aashish959/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-md border hover:bg-blue-600 hover:text-white transition-all duration-200 transform hover:scale-110">
-                  <Linkedin className="h-5 w-5" />
-                </a>
-                <a href="https://www.instagram.com/aashish.maurya_/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-md border hover:bg-blue-400 hover:text-white transition-all duration-200 transform hover:scale-110">
-                  <Instagram className="h-5 w-5" />
-                </a>
+            {/* SOCIALS */}
+            <div className="bg-white/5 border border-white/10 backdrop-blur rounded-xl p-6">
+              <h4 className="text-lg font-semibold text-white mb-4">
+                Connect With Me
+              </h4>
+
+              <div className="flex gap-4">
+                <SocialIcon href="https://github.com/Aashish595" icon={<Github />} />
+                <SocialIcon href="https://www.linkedin.com/in/aashish959/" icon={<Linkedin />} />
+                <SocialIcon href="https://www.instagram.com/aashish.maurya_/" icon={<Instagram />} />
               </div>
             </div>
 
-            {/* Availability */}
-            <div className="rounded-xl bg-gradient-to-br from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 border-0 shadow-lg p-6">
-              <div className="text-center">
-                <div className="inline-flex items-center space-x-2 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 px-4 py-2 rounded-full">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="font-medium">Available for new projects</span>
-                </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-3">I typically respond within 24 hours</p>
+            {/* AVAILABILITY */}
+            <div className="bg-white/5 border border-green-500/20 rounded-xl p-6 text-center">
+              <div className="inline-flex items-center gap-2 text-green-400">
+                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                Available for new projects
               </div>
+              <p className="text-xs text-gray-400 mt-2">
+                Usually responds within 24 hours
+              </p>
             </div>
-          </div>
+          </motion.div>
+
         </div>
       </div>
     </section>
   );
 }
+
+/* ================= FLOATING INPUT ================= */
+
+const FloatingInput = ({
+  label,
+  name,
+  type = "text",
+  value,
+  onChange,
+}) => (
+  <div className="relative">
+    <input
+      type={type}
+      name={name}
+      value={value}
+      onChange={onChange}
+      required
+      className="peer w-full bg-transparent border border-white/20
+                 rounded-lg px-4 pt-5 pb-2 text-white
+                 focus:border-blue-400 focus:outline-none"
+    />
+    <label
+      className="absolute left-4 top-3 text-gray-400 text-sm
+                 peer-focus:top-1 peer-focus:text-xs
+                 peer-focus:text-blue-400
+                 peer-valid:top-1 peer-valid:text-xs
+                 transition-all"
+    >
+      {label}
+    </label>
+  </div>
+);
+
+/* ================= FLOATING TEXTAREA ================= */
+
+const FloatingTextarea = ({
+  label,
+  name,
+  value,
+  onChange,
+}) => (
+  <div className="relative">
+    <textarea
+      name={name}
+      value={value}
+      onChange={onChange}
+      required
+      rows={4}
+      className="peer w-full bg-transparent border border-white/20
+                 rounded-lg px-4 pt-5 pb-2 text-white
+                 focus:border-blue-400 focus:outline-none resize-none"
+    />
+    <label
+      className="absolute left-4 top-3 text-gray-400 text-sm
+                 peer-focus:top-1 peer-focus:text-xs
+                 peer-focus:text-blue-400
+                 peer-valid:top-1 peer-valid:text-xs
+                 transition-all"
+    >
+      {label}
+    </label>
+  </div>
+);
+
+/* ================= HELPERS ================= */
+
+const InfoRow = ({ icon, text }) => (
+  <div className="flex items-center gap-3">
+    <span className="text-blue-400">{icon}</span>
+    <span>{text}</span>
+  </div>
+);
+
+const SocialIcon = ({ href, icon }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noreferrer"
+    className="p-3 rounded-lg border border-white/10
+               hover:border-blue-400/40
+               hover:bg-blue-500/10
+               transition transform hover:scale-110"
+  >
+    {icon}
+  </a>
+);
