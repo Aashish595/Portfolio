@@ -9,7 +9,7 @@ function SlowStars() {
     if (!ref.current) return;
 
     const t = clock.getElapsedTime();
-    ref.current.rotation.y = t * 0.010; // very slow
+    ref.current.rotation.y = t * 0.010; 
     ref.current.rotation.x = t * 0.008;
   });
 
@@ -18,10 +18,10 @@ function SlowStars() {
       ref={ref}
       radius={45}
       depth={30}
-      count={400}     // LOW count (important)
-      factor={2}    // small stars
+      count={400}
+      factor={2}   
       fade
-      speed={0.1}     // internal drift
+      speed={0.1}   
     />
   );
 }

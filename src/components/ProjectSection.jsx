@@ -2,94 +2,14 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, Github, ChevronLeft, ChevronRight, Layers } from "lucide-react";
-import assets from "../assets/assets";
-
-/* ================= DATA ================= */
-
-const projects = [
-  {
-    id: 1,
-    type: "personal",
-    title: "Language Exchange Platform",
-    description: "Real-time communication platform with video, chat, and payments.",
-    image: assets.lep,
-    filters: ["Next.js", "Full Stack", "Backend"],
-    stack: ["Next.js", "Node.js", "PostgreSQL", "Prisma", "Stripe"],
-    liveLink: "https://language-exchange-plateform.onrender.com/",
-    githubLink: "https://github.com/Aashish595/Language-Exchange-Plateform",
-  },
-  {
-    id: 2,
-    type: "personal",
-    title: "Food Delivery App",
-    description: "End-to-end food ordering system with admin dashboard.",
-    image: assets.foodDelivery,
-    filters: ["React", "Full Stack", "Backend"],
-    stack: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
-    liveLink: "https://food-delivery-frontend-tsqv.onrender.com/",
-    githubLink: "https://github.com/Aashish595/Food-delivery-App.git",
-  },
-  {
-    id: 3,
-    type: "personal",
-    title: "AI Coding Assistant",
-    description: "AI-powered assistant for coding and problem solving.",
-    image: assets.deepseekClone,
-    filters: ["Next.js", "AI"],
-    stack: ["Next.js", "Google GenAI", "MongoDB"],
-    liveLink: "https://deepseek-clone-pi-one.vercel.app/",
-    githubLink: "https://github.com/Aashish595/Deepseek_clone.git",
-  },
-  {
-    id: 4,
-    type: "client",
-    title: "Client E-commerce Platform",
-    description: "Production-ready e-commerce solution with secure checkout.",
-    image: assets.currencyConverter,
-    filters: ["React", "Full Stack"],
-    stack: ["React", "Node.js", "MongoDB", "Stripe"],
-    liveLink: "#",
-    githubLink: null,
-  },
-   {
-    id: 5,
-    type: "client",
-    title: "Client E-commerce Platform",
-    description: "Production-ready e-commerce solution with secure checkout.",
-    image: assets.currencyConverter,
-    filters: ["React", "Full Stack"],
-    stack: ["React", "Node.js", "MongoDB", "Stripe"],
-    liveLink: "#",
-    githubLink: null,
-  },
-  {
-    id: 6,
-    type: "client",
-    title: "Client E-commerce Platform",
-    description: "Production-ready e-commerce solution with secure checkout.",
-    image: assets.currencyConverter,
-    filters: ["React", "Full Stack"],
-    stack: ["React", "Node.js", "MongoDB", "Stripe"],
-    liveLink: "#",
-    githubLink: null,
-  },
-  {
-    id: 7,
-    type: "client",
-    title: "Client E-commerce Platform",
-    description: "Production-ready e-commerce solution with secure checkout.",
-    image: assets.currencyConverter,
-    filters: ["React", "Full Stack"],
-    stack: ["React", "Node.js", "MongoDB", "Stripe"],
-    liveLink: "#",
-    githubLink: null,
-  },
-];
-
-const FILTERS = ["All", "React", "Next.js", "Full Stack", "Backend", "AI"];
-
-/* ================= MAIN ================= */
+import {
+  ExternalLink,
+  Github,
+  ChevronLeft,
+  ChevronRight,
+  Layers,
+} from "lucide-react";
+import { projects, FILTERS } from "./projectsData";
 
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -98,20 +18,20 @@ export default function ProjectsSection() {
     projects.filter(
       (p) =>
         p.type === type &&
-        (activeFilter === "All" || p.filters.includes(activeFilter))
+        (activeFilter === "All" || p.filters.includes(activeFilter)),
     );
 
   return (
     <section id="projects" className="py-22 bg-slate-950 relative">
       <div className="max-w-7xl mx-auto px-6">
-        
         {/* HEADER */}
         <div className="text-center mb-16 space-y-4">
           <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight">
             Featured <span className="text-gradient">Work</span>
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-            A selection of personal projects and professional freelance work showcasing scalable and modern solutions.
+            A selection of personal projects and professional freelance work
+            showcasing scalable and modern solutions.
           </p>
         </div>
 
@@ -135,8 +55,14 @@ export default function ProjectsSection() {
 
         {/* CONTENT */}
         <div className="space-y-24">
-          <ProjectRow title="Personal / Resume Projects" projects={filtered("personal")} />
-          <ProjectRow title="Client / Freelance Projects" projects={filtered("client")} />
+          <ProjectRow
+            title="Personal / Resume Projects"
+            projects={filtered("personal")}
+          />
+          <ProjectRow
+            title="Client / Freelance Projects"
+            projects={filtered("client")}
+          />
         </div>
       </div>
     </section>
@@ -146,17 +72,17 @@ export default function ProjectsSection() {
 const ProjectRow = ({ title, projects }) => {
   if (projects.length === 0) return null;
   return (
-      <div className="space-y-8">
-        <div className="flex items-center gap-4">
-            <div className="p-2 bg-slate-900 rounded-lg text-blue-400">
-                <Layers size={24}/>
-            </div>
-            <h3 className="text-2xl font-bold text-white">{title}</h3>
+    <div className="space-y-8">
+      <div className="flex items-center gap-4">
+        <div className="p-2 bg-slate-900 rounded-lg text-blue-400">
+          <Layers size={24} />
         </div>
-        <HorizontalSlider projects={projects} />
+        <h3 className="text-2xl font-bold text-white">{title}</h3>
       </div>
-  )
-}
+      <HorizontalSlider projects={projects} />
+    </div>
+  );
+};
 
 /* ================= HORIZONTAL SLIDER ================= */
 
@@ -169,9 +95,7 @@ const HorizontalSlider = ({ projects }) => {
     const el = containerRef.current;
     if (!el) return;
     setCanScrollLeft(el.scrollLeft > 0);
-    setCanScrollRight(
-      el.scrollLeft + el.clientWidth < el.scrollWidth - 10
-    );
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 10);
   };
 
   useEffect(() => updateScrollState(), [projects]);
@@ -180,14 +104,25 @@ const HorizontalSlider = ({ projects }) => {
     const el = containerRef.current;
     if (!el) return;
     const cardWidth = el.firstChild?.offsetWidth + 24 || 300;
-    el.scrollBy({ left: dir === "left" ? -cardWidth : cardWidth, behavior: "smooth" });
+    el.scrollBy({
+      left: dir === "left" ? -cardWidth : cardWidth,
+      behavior: "smooth",
+    });
   };
 
   return (
     <div className="relative group/slider">
       {/* ARROWS */}
-      <ArrowButton disabled={!canScrollLeft} position="left" onClick={() => scrollByCard("left")} />
-      <ArrowButton disabled={!canScrollRight} position="right" onClick={() => scrollByCard("right")} />
+      <ArrowButton
+        disabled={!canScrollLeft}
+        position="left"
+        onClick={() => scrollByCard("left")}
+      />
+      <ArrowButton
+        disabled={!canScrollRight}
+        position="right"
+        onClick={() => scrollByCard("right")}
+      />
 
       <div
         ref={containerRef}
@@ -239,15 +174,15 @@ const ProjectCard = ({ project }) => (
     <div className="p-6 flex flex-col grow space-y-4">
       <div className="space-y-2">
         <h4 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
-            {project.title}
+          {project.title}
         </h4>
         <p className="text-slate-400 text-sm leading-relaxed line-clamp-2">
-            {project.description}
+          {project.description}
         </p>
       </div>
 
       <div className="mt-auto flex flex-wrap gap-2">
-        {project.stack.map((tech, i) => (
+        {(project.stack ?? []).map((tech, i) => (
           <span
             key={i}
             className="text-xs font-medium px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700"
@@ -261,17 +196,21 @@ const ProjectCard = ({ project }) => (
 );
 
 const ArrowButton = ({ position, onClick, disabled }) => (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      className={`absolute top-1/2 -translate-y-1/2 z-10 p-3 rounded-full glass-panel text-white transition-all
+  <button
+    onClick={onClick}
+    disabled={disabled}
+    className={`absolute top-1/2 -translate-y-1/2 z-10 p-3 rounded-full glass-panel text-white transition-all
         ${position === "left" ? "-left-4" : "-right-4"}
         ${disabled ? "opacity-0 pointer-events-none" : "opacity-0 group-hover/slider:opacity-100 hover:bg-blue-600 hover:border-blue-500 scale-90 hover:scale-100"}
       `}
-    >
-      {position === "left" ? <ChevronLeft size={24} /> : <ChevronRight size={24} />}
-    </button>
-  );
+  >
+    {position === "left" ? (
+      <ChevronLeft size={24} />
+    ) : (
+      <ChevronRight size={24} />
+    )}
+  </button>
+);
 
 const Icon = ({ href, children, label }) => (
   <a
@@ -284,4 +223,3 @@ const Icon = ({ href, children, label }) => (
     {children}
   </a>
 );
-

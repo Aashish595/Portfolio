@@ -7,9 +7,24 @@ import assets from "../assets/assets";
 export default function HeroSection() {
   const heroRef = useRef(null);
 
-  const scrollToWork = () => {
-    document.querySelector("#work")?.scrollIntoView({ behavior: "smooth" });
+  const scrollToProjects = () => {
+    document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const socials = [
+    {
+      icon: Github,
+      url: "https://github.com/Aashish595",
+    },
+    {
+      icon: Linkedin,
+      url: "https://www.linkedin.com/in/aashish959/",
+    },
+    {
+      icon: Mail,
+      url: "mailto:aashishmaurya959@gmail.com",
+    },
+  ];
 
   return (
     <section
@@ -18,10 +33,10 @@ export default function HeroSection() {
       className="relative min-h-screen pt-24 flex items-center overflow-hidden
       bg-[#020617] text-white"
     >
-      {/* ⭐ Minimal moving stars */}
+      {/*  Minimal moving stars */}
       <Background3D />
 
-      {/* 🌌 Nebula gradient overlay */}
+      {/*  Nebula gradient overlay */}
       <div
         className="absolute inset-0 z-[1]
         bg-[radial-gradient(ellipse_at_top_left,rgba(99,102,241,0.12),transparent_55%),
@@ -30,8 +45,7 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4">
-        
-        {/* ✨ Focused ambient glow behind text */}
+        {/* Focused ambient glow behind text */}
         <div
           aria-hidden
           className="absolute -left-24 top-1/2 -translate-y-1/2
@@ -76,29 +90,35 @@ export default function HeroSection() {
             {/* CTA */}
             <div className="flex gap-4 pt-4">
               <button
-                onClick={scrollToWork}
+                onClick={scrollToProjects}
                 className="px-6 py-3 rounded-md bg-white text-black font-medium
                 hover:bg-gray-200 transition"
               >
                 View Work ↓
               </button>
 
-              <button
+              <a
+                href="/Gurudas_Maurya_MERN_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-3 rounded-md border border-gray-700
-                text-gray-300 hover:border-gray-500 transition"
+             text-gray-300 hover:border-gray-500 transition"
               >
                 Resume
-              </button>
+              </a>
             </div>
 
             {/* Social */}
+            {/* Social */}
             <div className="flex gap-5 pt-8">
-              {[Github, Linkedin, Mail].map((Icon, i) => (
+              {socials.map(({ icon: Icon, url }, i) => (
                 <a
                   key={i}
-                  href="#"
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="p-3 rounded-full border border-gray-700
-                  hover:border-gray-500 transition"
+                 hover:border-gray-500 transition"
                 >
                   <Icon className="h-5 w-5 text-gray-300" />
                 </a>
@@ -109,7 +129,6 @@ export default function HeroSection() {
           {/* RIGHT IMAGE */}
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
-              
               {/* Soft outer glow */}
               <div
                 className="absolute inset-0 rounded-full blur-xl
@@ -133,7 +152,6 @@ export default function HeroSection() {
                   />
                 </div>
               </div>
-
             </div>
           </div>
         </div>

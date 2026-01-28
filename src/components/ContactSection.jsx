@@ -1,7 +1,5 @@
-"use client";
-
+'use client"';
 import { useState } from "react";
-import { motion } from "framer-motion";
 import {
   Mail,
   Phone,
@@ -11,6 +9,9 @@ import {
   Linkedin,
   Instagram,
 } from "lucide-react";
+import { motion } from "framer-motion";
+
+const FORMSPREE_URL = import.meta.env.VITE_FORMSPREE_URL;
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -24,11 +25,27 @@ export default function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    await new Promise((r) => setTimeout(r, 2000));
+    try {
+      const res = await fetch(FORMSPREE_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    alert("Message sent successfully!");
-    setFormData({ name: "", email: "", message: "" });
-    setIsSubmitting(false);
+      if (res.ok) {
+        alert("Message sent successfully ✅");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        alert("Something went wrong ");
+      }
+    } catch {
+      alert("Network error ");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -47,7 +64,6 @@ export default function ContactSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-blue-500/10 via-transparent to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
-
         {/* ===== HEADER ===== */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -57,13 +73,12 @@ export default function ContactSection() {
         >
           <h2 className="text-4xl font-bold text-white">Get In Touch</h2>
           <p className="text-gray-400 mt-3 max-w-2xl mx-auto">
-            Ready to start a project or looking for a developer?
-            Let's build something impactful.
+            Ready to start a project or looking for a developer? Let's build
+            something impactful.
           </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-
           {/* ===== CONTACT FORM ===== */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -77,7 +92,6 @@ export default function ContactSection() {
             </h3>
 
             <form onSubmit={handleSubmit} className="space-y-8">
-
               {/* NAME */}
               <FloatingInput
                 label="Name"
@@ -142,9 +156,15 @@ export default function ContactSection() {
               </h4>
 
               <div className="space-y-4 text-gray-300 text-sm">
-                <InfoRow icon={<Mail size={18} />} text="aashishmaurya959@gmail.com" />
+                <InfoRow
+                  icon={<Mail size={18} />}
+                  text="aashishmaurya959@gmail.com"
+                />
                 <InfoRow icon={<Phone size={18} />} text="+91 9919454692" />
-                <InfoRow icon={<MapPin size={18} />} text="Uttar Pradesh, India" />
+                <InfoRow
+                  icon={<MapPin size={18} />}
+                  text="Uttar Pradesh, India"
+                />
               </div>
             </div>
 
@@ -155,9 +175,22 @@ export default function ContactSection() {
               </h4>
 
               <div className="flex gap-4">
-                <SocialIcon href="https://github.com/Aashish595" icon={<Github />} />
-                <SocialIcon href="https://www.linkedin.com/in/aashish959/" icon={<Linkedin />} />
-                <SocialIcon href="https://www.instagram.com/aashish.maurya_/" icon={<Instagram />} />
+                <SocialIcon
+                  href="https://github.com/Aashish595"
+                  icon={<Github />}
+                />
+                <SocialIcon
+                  href="https://www.linkedin.com/in/aashish959/"
+                  icon={<Linkedin />}
+                />
+                <SocialIcon
+                  href="https://www.instagram.com/aashish.maurya_/"
+                  icon={<Instagram />}
+                />
+                <SocialIcon
+                  href="mailto:aashishmaurya959@gmail.com"
+                  icon={<Mail />}
+                />
               </div>
             </div>
 
@@ -172,7 +205,6 @@ export default function ContactSection() {
               </p>
             </div>
           </motion.div>
-
         </div>
       </div>
     </section>
@@ -181,13 +213,7 @@ export default function ContactSection() {
 
 /* ================= FLOATING INPUT ================= */
 
-const FloatingInput = ({
-  label,
-  name,
-  type = "text",
-  value,
-  onChange,
-}) => (
+const FloatingInput = ({ label, name, type = "text", value, onChange }) => (
   <div className="relative">
     <input
       type={type}
@@ -213,12 +239,7 @@ const FloatingInput = ({
 
 /* ================= FLOATING TEXTAREA ================= */
 
-const FloatingTextarea = ({
-  label,
-  name,
-  value,
-  onChange,
-}) => (
+const FloatingTextarea = ({ label, name, value, onChange }) => (
   <div className="relative">
     <textarea
       name={name}

@@ -7,6 +7,7 @@ import {
   Users,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import assets from "../assets/assets";
 
 
 /* ================= MAIN SECTION ================= */
@@ -43,7 +44,7 @@ export default function ExperienceSection() {
           className="flex flex-wrap justify-center gap-4 mb-20"
         >
           <StatBadge icon={Briefcase} label="1+ Years Total Experience" />
-          
+      
         </motion.div>
 
         {/* ===== EXPERIENCE + DSA ===== */}
@@ -203,7 +204,7 @@ const LogoMarquee = () => {
     },
     {
       name: "Rareframe Studio",
-      logo: "/logos/rareframe.svg",
+      logo: assets.rareframeLogo,
       link: "https://rareframe.studio/",
     },
     {
