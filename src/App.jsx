@@ -3,9 +3,9 @@ import HeroSection from "./components/HeroSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import ExperienceSection from "./components/ExperienceSection";
-import Cursor from "./components/cursor";
+import Cursor from "./components/Cursor";
 import ProjectsSection from "./components/ProjectSection";
-import LeftSocialBar from "./components/LeftSocialBar";
+
 
 function App() {
   return (
