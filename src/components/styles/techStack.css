@@ -1,0 +1,27 @@
+.techstack {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* TITLE POSITION (YOUR MARKED AREA) */
+.techstack-title-wrap {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  pointer-events: none;
+}
+
+.techstack-title {
+  position: static;
+  margin: 0;
+  font-size: clamp(42px, 7vw, 100px);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  text-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
+}
