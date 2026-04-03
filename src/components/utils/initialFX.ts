@@ -2,6 +2,7 @@ import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { startLenis } from "./lenis";
 
+gsap.registerPlugin(SplitText);
 export function initialFX() {
   document.body.style.overflowY = "auto";
   startLenis();
