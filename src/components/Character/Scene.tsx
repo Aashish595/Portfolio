@@ -44,7 +44,7 @@ const Scene = () => {
       camera.updateProjectionMatrix();
 
       let headBone: THREE.Object3D | null = null;
-      const screenLight: any | null = null;
+      let screenLight: any | null = null;
       let mixer: THREE.AnimationMixer;
 
       const clock = new THREE.Clock();
